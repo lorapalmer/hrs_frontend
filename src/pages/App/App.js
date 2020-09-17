@@ -5,7 +5,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>
@@ -15,6 +15,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

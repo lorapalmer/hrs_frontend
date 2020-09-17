@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import {
   Form,
   Input,
@@ -210,7 +211,7 @@ const RegistrationForm = () => {
             {...tailFormItemLayout}
           >
             <Checkbox>
-              I have read the <a href=''>agreement</a>
+              I have read the <Link to='/'>agreement</Link>
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
