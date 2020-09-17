@@ -1,0 +1,40 @@
+.ant-layout.layout {
+  min-height: 100vh;
+}
+
+.ant-layout-header.header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 20px;
+}
+
+.ant-layout-header.header .brand {
+  font-size: 28px;
+  color: white;
+}
+
+.ant-layout-header.header section {
+  display: flex;
+  justify-content: space-around;
+  width: 15%;
+}
+
+.ant-layout-header.header section a {
+  color: white;
+}
+
+.ant-layout-content {
+  background-color: white;
+}
+
+.ant-layout-footer.footer {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+.ant-typography.info {
+  color: white;
+  font-size: 16px;
+}
