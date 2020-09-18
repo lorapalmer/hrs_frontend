@@ -1,7 +1,7 @@
 import React from 'react';
 import {Typography, Form, Input, Button, Select} from 'antd';
 // import {useDispatch, useSelector} from 'react-redux';
-// import { createSupplier } from '../../redux/supplier/actions';
+// import { createSupplierRequest } from '../../redux/supplier/actions';
 import './Home.css';
 import Layout from '../../common/Layout/Layout';
 
@@ -18,7 +18,7 @@ function Home() {
   // const dispatch = useDispatch();
   // const data = useSelector(state => state.supplier);
 
-  // const check = () => dispatch(createSupplier());
+  // const check = () => dispatch(createSupplierRequest());
 
   const onAmenitiesChange = (value) => {
     // switch (value) {
@@ -35,6 +35,9 @@ function Home() {
   };
 
   const onServicesChange = (value) => {};
+  const changeVenueFields = (event) => {
+    console.log(event, form);
+  };
 
   return (
     <Layout>
@@ -52,7 +55,11 @@ function Home() {
             className='venue_form_label'
             rules={[{required: true}]}
           >
-            <Input allowClear placeholder='Enter Supplier Name' />
+            <Input
+              allowClear
+              placeholder='Enter Supplier Name'
+              onChange={changeVenueFields}
+            />
           </Form.Item>
           <Form.Item
             name='H-Key'

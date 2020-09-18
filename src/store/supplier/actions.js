@@ -1,9 +1,9 @@
-export const CREATE_SUPPLIER = 'CREATE_SUPPLIER';
+export const CREATE_SUPPLIER_REQUEST = 'CREATE_SUPPLIER_REQUEST';
 export const CREATE_SUPPLIER_SUCCESS = 'CREATE_SUPPLIER_SUCCESS';
 export const CREATE_SUPPLIER_FAILURE = 'CREATE_SUPPLIER_FAILURE';
 
-export const createSupplier = () => ({
-  type: CREATE_SUPPLIER,
+export const createSupplierRequest = () => ({
+  type: CREATE_SUPPLIER_REQUEST,
   loading: true,
 });
 

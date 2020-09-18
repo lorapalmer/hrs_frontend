@@ -1,13 +1,13 @@
 import initialState from './state';
 import {
-  CREATE_SUPPLIER,
+  CREATE_SUPPLIER_REQUEST,
   CREATE_SUPPLIER_SUCCESS,
   CREATE_SUPPLIER_FAILURE,
 } from './actions';
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case CREATE_SUPPLIER:
+    case CREATE_SUPPLIER_REQUEST:
       return {
         ...state,
         loading: action.loading,
