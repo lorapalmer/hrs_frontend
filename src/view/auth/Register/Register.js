@@ -11,7 +11,7 @@ import {
   Typography,
 } from 'antd';
 import {QuestionCircleOutlined} from '@ant-design/icons';
-import Layout from '../../components/Layout';
+import Layout from '../../common/Layout/Layout';
 import './Register.css';
 
 const {Option} = Select;

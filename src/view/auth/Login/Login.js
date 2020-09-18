@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form, Input, Button, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import Layout from '../../components/Layout';
+import Layout from '../../common/Layout/Layout';
 import './Login.css';
 
 const {Title} = Typography;

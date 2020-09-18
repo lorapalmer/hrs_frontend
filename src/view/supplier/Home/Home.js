@@ -3,7 +3,7 @@ import {Typography, Form, Input, Button, Select} from 'antd';
 // import {useDispatch, useSelector} from 'react-redux';
 // import { createSupplier } from '../../redux/supplier/actions';
 import './Home.css';
-import Layout from '../../components/Layout';
+import Layout from '../../common/Layout/Layout';
 
 const {Title} = Typography;
 const {Option} = Select;
