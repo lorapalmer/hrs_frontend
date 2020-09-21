@@ -1,8 +1,7 @@
 import React from 'react';
 import {Form, Input, Button, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import Layout from '../../common/Layout/Layout';
-import './Login.css';
+import login from './Login.module.css';
 
 const {Title} = Typography;
 
@@ -15,46 +14,36 @@ const LoginForm = () => {
   const [form] = Form.useForm();
 
   return (
-    <Layout>
-      <section className='login_form__container'>
-        <Form
-          {...layout}
-          form={form}
-          name='control-hooks'
-          className='login_form'
+    <section className={login.container}>
+      <Form {...layout} form={form} className={login.form}>
+        <Title>Log In</Title>
+        <Form.Item
+          name='UserName'
+          label='UserName'
+          className={login.item}
+          rules={[{required: true}]}
         >
-          <Title>Log In</Title>
-          <Form.Item
-            name='UserName'
-            label='UserName'
-            className='login_form_label'
-            rules={[{required: true}]}
-          >
-            <Input
-              prefix={<UserOutlined className='site-form-item-icon' />}
-              placeholder='Your UserName'
-            />
-          </Form.Item>
-          <Form.Item
-            name='Password'
-            label='Password'
-            className='login_form_label'
-            rules={[{required: true}]}
-          >
-            <Input
-              prefix={<LockOutlined className='site-form-item-icon' />}
-              type='password'
-              placeholder='Your Password'
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button type='primary' htmlType='submit'>
-              Log In
-            </Button>
-          </Form.Item>
-        </Form>
-      </section>
-    </Layout>
+          <Input prefix={<UserOutlined />} placeholder='Your UserName' />
+        </Form.Item>
+        <Form.Item
+          name='Password'
+          label='Password'
+          className={login.item}
+          rules={[{required: true}]}
+        >
+          <Input
+            prefix={<LockOutlined />}
+            type='password'
+            placeholder='Your Password'
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button type='primary' htmlType='submit'>
+            Log In
+          </Button>
+        </Form.Item>
+      </Form>
+    </section>
   );
 };
 

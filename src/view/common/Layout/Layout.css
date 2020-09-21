@@ -5,36 +5,36 @@
 .ant-layout-header.header {
   display: flex;
   justify-content: space-between;
-  color: white;
+  color: #ffffff;
   font-size: 20px;
 }
 
 .ant-layout-header.header .brand {
   font-size: 28px;
-  color: white;
+  color: #ffffff;
 }
 
 .ant-layout-header.header section {
   display: flex;
   justify-content: space-around;
-  width: 15%;
+  width: 210px;
 }
 
 .ant-layout-header.header section a {
-  color: white;
+  color: #ffffff;
 }
 
 .ant-layout-content {
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .ant-layout-footer.footer {
   display: flex;
   justify-content: center;
-  background-color: black;
+  background-color: #001529;
 }
 
 .ant-typography.info {
-  color: white;
+  color: #ffffff;
   font-size: 16px;
 }

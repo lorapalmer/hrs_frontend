@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import supplier from './supplier/reducer';
 
-// main reducer which includes others
+// MAIN REDUCER WHICH BRINGS OTHERS TOGETHER
 const rootReducer = combineReducers({
   supplier,
 });

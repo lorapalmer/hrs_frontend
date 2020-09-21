@@ -1,15 +1,20 @@
-// redux methods which help to configure redux store
+// REDUX METHODS
 import {createStore, applyMiddleware, compose} from 'redux';
-// logger which needed only for development purposes
+// LOGGER MIDDLEWARE
 import {createLogger} from 'redux-logger';
-// main reducer
-import reducer from './rootReducer';
-// middleware for API requests
+// API REQUESTS MIDDLEWARE
 import thunk from 'redux-thunk';
+// MAIN REDUCER
+import reducer from './rootReducer';
+// DEPENDENCY CONTAINER
+import container from '../app/supplier/container';
 
-// functions invocations to build redux store
+// FUNCTION COMPOSITION PATTERN FOR REDUX STORE BUILDING
 const logger = createLogger({collapsed: true}),
-  createStoreWithMiddleware = applyMiddleware(thunk, logger),
+  createStoreWithMiddleware = applyMiddleware(
+    thunk.withExtraArgument(container),
+    logger,
+  ),
   store = createStore(reducer, compose(createStoreWithMiddleware));
 
 export default store;

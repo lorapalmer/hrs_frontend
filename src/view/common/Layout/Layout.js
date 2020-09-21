@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './Layout.css';
 
-const {Header, Content, Footer} = Layout;
-const {Text} = Typography;
+const {Header, Content, Footer} = Layout,
+  {Text} = Typography;
 
-function LayoutDefault(props) {
+// MAIN LAYOUT COMPONENT
+const LayoutDefault = (props) => {
   return (
     <Layout className='layout'>
       <Header className='header'>
@@ -23,6 +24,6 @@ function LayoutDefault(props) {
       </Footer>
     </Layout>
   );
-}
+};
 
 export default LayoutDefault;

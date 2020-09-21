@@ -7,6 +7,7 @@ import store from './store/config';
 import 'antd/dist/antd.css';
 import './view/styles/index.css';
 
+// ENTRY POINT FOR REACT APP WITH REDUX STORE PROVIDER
 render(
   <Provider store={store}>
     <App />
@@ -14,4 +15,5 @@ render(
   document.getElementById('root'),
 );
 
+// PWA
 serviceWorker.unregister();
