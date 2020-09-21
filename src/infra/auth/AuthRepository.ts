@@ -1,6 +1,14 @@
-export default ({Auth}) => ({
+export default ({Auth}: {Auth: any}) => ({
   // REGISTER ENTITY
-  async create({username, email, password}) {
+  async create({
+    username,
+    email,
+    password,
+  }: {
+    username: string;
+    email: string;
+    password: string;
+  }) {
     try {
       const user = await Auth.signUp({
         username,
@@ -14,7 +22,7 @@ export default ({Auth}) => ({
   },
 
   // AUTHORIZE ENTITY
-  async authenticate({email, password}) {
+  async authenticate({email, password}: {email: string; password: string}) {
     try {
       const user = await Auth.signIn(email, password);
       return user;
@@ -24,7 +32,7 @@ export default ({Auth}) => ({
   },
 
   // VERIFY ENTITY
-  async verify({username, code}) {
+  async verify({username, code}: {username: string; code: string}) {
     try {
       const response = await Auth.confirmSignUp(username, code);
       return response;
@@ -54,7 +62,7 @@ export default ({Auth}) => ({
   },
 
   // SOCIAL PROVIDERS
-  async getSocialsResponse(provider) {
+  async getSocialsResponse(provider: string) {
     await Auth.federatedSignIn({provider});
   },
 });

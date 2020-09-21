@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Form, Input, Button, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import login from './Login.module.css';
@@ -10,7 +10,7 @@ const layout = {
   wrapperCol: {span: 16},
 };
 
-const LoginForm = () => {
+const LoginForm: FC = () => {
   const [form] = Form.useForm();
 
   return (

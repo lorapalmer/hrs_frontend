@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, FC} from 'react';
 import {Link} from 'react-router-dom';
 import {
   Form,
@@ -39,11 +39,11 @@ const tailFormItemLayout = {
   },
 };
 
-const RegistrationForm = () => {
+const RegistrationForm: FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const onFinish = () => {
+    console.log('Received values of form: ');
   };
 
   const prefixSelector = (
@@ -57,14 +57,14 @@ const RegistrationForm = () => {
 
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        ['.com', '.org', '.net'].map((domain) => `${value}${domain}`),
-      );
-    }
+  const onWebsiteChange = () => {
+    // if (!value) {
+    //   setAutoCompleteResult([]);
+    // } else {
+    //   setAutoCompleteResult(
+    //     // ['.com', '.org', '.net'].map((domain) => `${value}${domain}`),
+    //   );
+    // }
   };
 
   const websiteOptions = autoCompleteResult.map((website) => ({

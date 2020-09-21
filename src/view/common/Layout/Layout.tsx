@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './Layout.css';
@@ -7,7 +7,7 @@ const {Header, Content, Footer} = Layout,
   {Text} = Typography;
 
 // MAIN LAYOUT COMPONENT
-const LayoutDefault = (props) => {
+const LayoutDefault: FC = (props) => {
   return (
     <Layout className='layout'>
       <Header className='header'>

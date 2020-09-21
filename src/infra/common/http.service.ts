@@ -1,13 +1,13 @@
 // CREATE URL FOR QUERIES USAGE
-const objectToQueryString = (o) =>
+const objectToQueryString = (o: any): string =>
   Object.keys(o)
-    .map((k) => k + '=' + o[k])
+    .map((k: string) => k + '=' + o[k])
     .join('&');
 
 // BASE HTTP REQUEST WRAPPER
-const request = async (url, params, method = 'GET') => {
-  const baseURL = 'http://localhost:5000/api/';
-  const options = {
+const request = async (url: string, params: Object, method = 'GET') => {
+  const baseURL: string = 'http://localhost:5000/api/';
+  const options: any = {
     method,
     headers: {
       'Content-Type': 'application/json',
@@ -33,10 +33,10 @@ const request = async (url, params, method = 'GET') => {
 
 // INTERFACE WITH MAIN CRUD OPERATION METHODS
 const api = {
-  get: (url, params) => request(url, params),
-  add: (url, params) => request(url, params, 'POST'),
-  update: (url, params) => request(url, params, 'PUT'),
-  remove: (url, params) => request(url, params, 'DELETE'),
+  get: (url: string, params: Object) => request(url, params),
+  add: (url: string, params: Object) => request(url, params, 'POST'),
+  update: (url: string, params: Object) => request(url, params, 'PUT'),
+  remove: (url: string, params: Object) => request(url, params, 'DELETE'),
 };
 
 export default api;

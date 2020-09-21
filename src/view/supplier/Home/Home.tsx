@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Typography, Form, Input, Button, Select} from 'antd';
 import {useDispatch} from 'react-redux';
 import {createSupplierAction} from '../../../store/supplier/actions';
@@ -11,15 +11,15 @@ const {Title} = Typography,
     wrapperCol: {span: 16},
   };
 
-const Home = () => {
+const Home: FC = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
-  const submitSupplierData = () => {
+  const submitSupplierData = (): void => {
     dispatch(createSupplierAction(form.getFieldsValue()));
   };
 
-  const errorsData = () => {
+  const errorsData = (): void => {
     console.log(form.getFieldsError());
   };
 

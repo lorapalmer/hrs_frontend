@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from '../../supplier/Home/Home';
 import Login from '../../auth/Login/Login';
@@ -6,7 +6,7 @@ import Register from '../../auth/Register/Register';
 import Layout from '../Layout/Layout';
 
 // ROUTES FOR WHOLE APP
-const App = () => {
+const App: FC = () => {
   return (
     <Router>
       <Layout>
