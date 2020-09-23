@@ -1,4 +1,4 @@
-import api from '../../infra/common/http.service.ts';
+import api from '../../infra/common/http.service';
 import makeCreateSupplier from './createSupplier';
 import makeSupplierRepository from '../../infra/supplier/SupplierRepository';
 

@@ -1,19 +1,9 @@
-import React, {useState, FC} from 'react';
+import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {
-  Form,
-  Input,
-  Tooltip,
-  Select,
-  Checkbox,
-  Button,
-  AutoComplete,
-  Typography,
-} from 'antd';
+import {Form, Input, Tooltip, Checkbox, Button, Typography} from 'antd';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import register from './Register.module.css';
 
-const {Option} = Select;
 const {Title} = Typography;
 
 const formItemLayout = {
@@ -45,32 +35,6 @@ const RegistrationForm: FC = () => {
   const onFinish = () => {
     console.log('Received values of form: ');
   };
-
-  const prefixSelector = (
-    <Form.Item name='prefix' noStyle>
-      <Select style={{width: 70}}>
-        <Option value='86'>+86</Option>
-        <Option value='87'>+87</Option>
-      </Select>
-    </Form.Item>
-  );
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-  const onWebsiteChange = () => {
-    // if (!value) {
-    //   setAutoCompleteResult([]);
-    // } else {
-    //   setAutoCompleteResult(
-    //     // ['.com', '.org', '.net'].map((domain) => `${value}${domain}`),
-    //   );
-    // }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
 
   return (
     <section className={register.container}>
@@ -174,7 +138,7 @@ const RegistrationForm: FC = () => {
           label='Phone Number'
           rules={[{required: true, message: 'Please input your phone number!'}]}
         >
-          <Input addonBefore={prefixSelector} style={{width: '100%'}} />
+          <Input style={{width: '100%'}} />
         </Form.Item>
 
         <Form.Item
@@ -183,13 +147,7 @@ const RegistrationForm: FC = () => {
           label='Website'
           rules={[{required: true, message: 'Please input website!'}]}
         >
-          <AutoComplete
-            options={websiteOptions}
-            onChange={onWebsiteChange}
-            placeholder='website'
-          >
-            <Input />
-          </AutoComplete>
+          <Input />
         </Form.Item>
 
         <Form.Item

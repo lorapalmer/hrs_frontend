@@ -1,7 +1,7 @@
 // CONNECT STORE LAYER WITH INFRASTRUCTURE LAYER VIA DEPENDENCIES INJECTION PATTERN (FUNCTIONAL STYLE)
-export default ({supplierRepository}) => async (
-  supplierData,
-  {onSuccess, onError},
+export default ({supplierRepository}: {supplierRepository: any}) => async (
+  supplierData: any,
+  {onSuccess, onError}: {onSuccess: any; onError: any},
 ) => {
   try {
     const supplier = await supplierRepository.add(supplierData);

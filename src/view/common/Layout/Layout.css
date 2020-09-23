@@ -25,6 +25,8 @@
 }
 
 .ant-layout-content {
+  margin: 10px;
+  padding: 30px;
   background-color: #ffffff;
 }
 

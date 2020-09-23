@@ -1,0 +1,45 @@
+{
+  "amenities": [
+    {
+      "id": 1,
+      "name": "restaurant"
+    },
+    {
+      "id": 2,
+      "name": "bar"
+    },
+    {
+      "id": 3,
+      "name": "elevator"
+    },
+    {
+      "id": 4,
+      "name": "reception"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "breakfast"
+    },
+    {
+      "id": 2,
+      "name": "laundry"
+    },
+    {
+      "id": 3,
+      "name": "pets"
+    },
+    {
+      "id": 4,
+      "name": "cleaning"
+    }
+  ],
+  "venue": {
+    "name": "interdan_test",
+    "hkey": "zc",
+    "amenitiesIds": [1],
+    "servicesIds": [2],
+    "description": "LLLLLLL"
+  }
+}

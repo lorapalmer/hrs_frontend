@@ -5,7 +5,7 @@ const objectToQueryString = (o: any): string =>
     .join('&');
 
 // BASE HTTP REQUEST WRAPPER
-const request = async (url: string, params: Object, method = 'GET') => {
+const request = async (url: string, params: Object, method: string = 'GET') => {
   const baseURL: string = 'http://localhost:5000/api/';
   const options: any = {
     method,
