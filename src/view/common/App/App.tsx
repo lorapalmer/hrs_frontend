@@ -11,7 +11,12 @@ const App: FC = () => {
     <Router>
       <Layout>
         <Switch>
-          <Route exact path='/' component={AddVenuePage} />
+          <Route
+            exact
+            path='/'
+            render={() => <h1 style={{textAlign: 'center'}}>HRS System</h1>}
+          />
+          <Route exact path='/create-venue' component={AddVenuePage} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
         </Switch>

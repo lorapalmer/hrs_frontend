@@ -15,6 +15,9 @@ const LayoutDefault: FC = (props) => {
           HRS
         </Link>
         <section>
+          <Link to='/create-venue?step=0'>Add Venue</Link>
+        </section>
+        <section>
           <Link to='/login'>Log In</Link> |<Link to='/register'>Sign Up</Link>
         </section>
       </Header>

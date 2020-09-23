@@ -1,7 +1,7 @@
 import React, {FC, useState, useEffect} from 'react';
 import {Form, Input, Select} from 'antd';
-// import {useDispatch} from 'react-redux';
-// import {createSupplierAction} from '../../../store/supplier/actions';
+import {useDispatch} from 'react-redux';
+import {handleSupplierFields} from '../../../store/supplier/actions';
 import {AmenitiesType, IAmenity, ServicesType, IService} from './Home.types';
 import validate from '../../common/validation';
 import venue from './Home.module.css';
@@ -16,7 +16,7 @@ const Home: FC = () => {
   const [amenities, setAmenities] = useState<AmenitiesType>(null);
   const [services, setServices] = useState<ServicesType>(null);
   const [form] = Form.useForm();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch('http://localhost:3001/amenities')
@@ -28,30 +28,34 @@ const Home: FC = () => {
       .then((data) => setServices(data));
   }, []);
 
-  const submitSupplierData = (): void => {
-    fetch('http://localhost:3001/venue', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form.getFieldsValue()),
-    })
-      .then((response) => response.json())
-      .then((data) => form.resetFields());
-    // dispatch(createSupplierAction(form.getFieldsValue()));
-  };
+  // const submitSupplierData = (): void => {
+  //   fetch('http://localhost:3001/venue', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(form.getFieldsValue()),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => form.resetFields());
+  //   // dispatch(createSupplierAction(form.getFieldsValue()));
+  // };
 
   const errorsData = (): void => {
     console.log(form.getFieldsError());
   };
 
-  // className={venue.container}
+  console.log(form);
+  const handleFormFields = (value: string, name: string) => {
+    dispatch(handleSupplierFields(value, name));
+  };
+
   return (
     <Form
       {...layout}
       form={form}
       className={venue.form}
-      onFinish={submitSupplierData}
+      // onFinish={submitSupplierData}
       onFinishFailed={errorsData}
     >
       <Form.Item
@@ -60,7 +64,11 @@ const Home: FC = () => {
         className={venue.item}
         rules={[validate.isRequired]}
       >
-        <Input allowClear placeholder='Enter Supplier Name' />
+        <Input
+          allowClear
+          placeholder='Enter Supplier Name'
+          onChange={(event) => handleFormFields(event.target.value, 'name')}
+        />
       </Form.Item>
       <Form.Item
         name='hkey'
