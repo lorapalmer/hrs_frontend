@@ -1,8 +1,9 @@
-interface IValidationRequired {
-  required: boolean;
-  message: string;
+interface IValidationTypes {
+  email: string;
+  url: string;
 }
 
 export interface IValidation {
-  isRequired: IValidationRequired;
+  required: string;
+  types: IValidationTypes;
 }

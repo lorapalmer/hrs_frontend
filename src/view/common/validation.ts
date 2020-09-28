@@ -1,10 +1,11 @@
 import {IValidation} from './validation.types';
 
-const validate: IValidation = {
-  isRequired: {
-    required: true,
-    message: 'This field is required',
+const validateMessages: IValidation = {
+  required: 'This field is required',
+  types: {
+    email: '${label} is not valid',
+    url: '${label} URL is not valid',
   },
 };
 
-export default validate;
+export default validateMessages;

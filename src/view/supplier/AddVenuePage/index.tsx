@@ -1,51 +1,61 @@
-import React, {FC} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
-import {Steps, Card, Button, Row, Col} from 'antd';
+import React, {FC, useState} from 'react';
+import {Steps, Card, Button, message} from 'antd';
+import {useSelector} from 'react-redux';
 import {stepsList} from './statics';
 import steps from './index.module.css';
+import {RootState} from '../../../store/supplier/types';
 
 const {Step} = Steps;
 
 const AddVenuePage: FC = () => {
-  const location = useLocation();
-  const history = useHistory();
-  const stepID = +location.search.substr(-1);
+  const [current, setCurrent] = useState<number>(4);
+  const selector = useSelector(
+    (state: RootState) =>
+      state.supplierReducer[stepsList[current].key],
+  );
 
-  const changeStep = (current: number): void => {
-    history.push(`create-venue?step=${current}`);
+  const next = (): void => {
+    const isValid: boolean = Object.values(selector).every(
+      (v: any): boolean => !!v.length,
+    );
+    if (!isValid) {
+      message.error(
+        'Check all form fields in the current step',
+      );
+      return;
+    }
+
+    setCurrent(current + 1);
   };
-  const next = (): void => {};
-  // setCurrent(current + 1);
-  const prev = (): void => {};
-  // setCurrent(current - 1);
+  const prev = (): void => setCurrent(current - 1);
 
   return (
     <Card className={steps.card}>
-      <Steps current={stepID} onChange={changeStep} direction='horizontal'>
+      <Steps current={current} direction='horizontal'>
         {stepsList.map((step, index) => (
           <Step key={index} title={step.title} />
         ))}
       </Steps>
-      <Col span={4}>
-        <Row gutter={6}>{stepsList[stepID].content}</Row>
-        <Row gutter={6}>
-          {stepID < stepsList.length - 1 && (
-            <Button type='primary' onClick={next}>
-              Next
-            </Button>
-          )}
-          {stepID === stepsList.length - 1 && (
-            <Button type='primary' onClick={() => {}}>
-              Add Venue
-            </Button>
-          )}
-          {stepID > 0 && (
-            <Button style={{margin: '0 8px'}} onClick={prev}>
-              Previous
-            </Button>
-          )}
-        </Row>
-      </Col>
+      <section className={steps.content}>
+        {stepsList[current].content}
+      </section>
+      <section className={steps.actions}>
+        {current > 0 && (
+          <Button style={{margin: '0 8px'}} onClick={prev}>
+            Previous
+          </Button>
+        )}
+        {current === stepsList.length - 1 && (
+          <Button type='primary' onClick={() => {}}>
+            Add Venue
+          </Button>
+        )}
+        {current < stepsList.length - 1 && (
+          <Button type='primary' onClick={next}>
+            Next
+          </Button>
+        )}
+      </section>
     </Card>
   );
 };

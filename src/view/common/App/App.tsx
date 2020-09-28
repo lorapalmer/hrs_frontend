@@ -1,5 +1,9 @@
 import React, {FC} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import Login from '../../auth/Login/Login';
 import Register from '../../auth/Register/Register';
 import Layout from '../Layout/Layout';
@@ -11,14 +15,13 @@ const App: FC = () => {
     <Router>
       <Layout>
         <Switch>
+          <Route exact path='/' component={AddVenuePage} />
+          <Route exact path='/login' component={Login} />
           <Route
             exact
-            path='/'
-            render={() => <h1 style={{textAlign: 'center'}}>HRS System</h1>}
+            path='/register'
+            component={Register}
           />
-          <Route exact path='/create-venue' component={AddVenuePage} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
         </Switch>
       </Layout>
     </Router>

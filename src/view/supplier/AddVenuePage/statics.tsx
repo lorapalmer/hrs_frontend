@@ -1,29 +1,50 @@
 import React from 'react';
-import Home from '../Home/Home';
+import General from './components/General/General';
+import HotelChain from './components/HotelChain/HotelChain';
+import Address from './components/Address/Address';
+import Details from './components/Details/Details';
+import Units from './components/Units/Units';
 
-export const stepsList = [
+interface IStepDescription {
+  title: string;
+  content: JSX.Element | string;
+  key: string;
+}
+
+export const stepsList: IStepDescription[] = [
   {
-    title: 'Add Venue',
-    content: <Home />,
+    title: 'General',
+    content: <General />,
+    key: 'general',
   },
   {
-    title: 'Second',
-    content: 'Second-content',
+    title: 'Hotel Chain',
+    content: <HotelChain />,
+    key: 'hotelChain',
   },
   {
-    title: 'Third',
-    content: 'Third-content',
+    title: 'Address',
+    content: <Address />,
+    key: 'address',
   },
   {
-    title: 'Forth',
-    content: 'Forth-content',
+    title: 'Contact Details',
+    content: <Details />,
+    key: 'details',
   },
   {
-    title: 'Fifth',
-    content: 'Fifth-content',
+    title: 'Units',
+    content: <Units />,
+    key: 'units',
   },
   {
-    title: 'Sixth',
+    title: 'Prices',
     content: 'Sixth-content',
+    key: 'prices',
+  },
+  {
+    title: 'Operational Hours',
+    content: 'Seventh-content',
+    key: 'hours',
   },
 ];

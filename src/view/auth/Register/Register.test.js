@@ -1,7 +1,7 @@
 // import React from 'react';
 // import {render} from '@testing-library/react';
-// import Home from './Home';
+// import General from './General';
 
-// test('renders Home component', () => {
-//   render(<Home />);
+// test('renders General component', () => {
+//   render(<General />);
 // });

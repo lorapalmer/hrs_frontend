@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import supplier from './supplier/reducer';
+import supplierReducer from './supplier/reducer';
 
 // MAIN REDUCER WHICH BRINGS OTHERS TOGETHER
 const rootReducer = combineReducers({
-  supplier,
+  supplierReducer,
 });
 
 export default rootReducer;

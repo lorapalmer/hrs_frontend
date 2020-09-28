@@ -35,6 +35,20 @@
       "name": "cleaning"
     }
   ],
+  "chains": [
+    {
+      "id": 1,
+      "name": "Marriott"
+    },
+    {
+      "id": 2,
+      "name": "Radisson"
+    },
+    {
+      "id": 3,
+      "name": "Hyatt"
+    }
+  ],
   "venue": {
     "name": "interdan_test",
     "hkey": "zc",
