@@ -1,5 +1,5 @@
 import {CreateSupplierActionTypes} from './types';
-import {IUnit} from '../../view/supplier/AddVenuePage/components/Units/Units.types';
+import {IUnit} from '../../view/supplier/AddVenue/pages/Units/Units.types';
 
 export const CREATE_SUPPLIER_REQUEST =
   'CREATE_SUPPLIER_REQUEST';

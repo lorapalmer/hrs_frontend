@@ -15,14 +15,22 @@ const AddVenuePage: FC = () => {
   );
 
   const next = (): void => {
-    const isValid: boolean = Object.values(selector).every(
-      (v: any): boolean => !!v.length,
-    );
-    if (!isValid) {
-      message.error(
-        'Check all form fields in the current step',
-      );
-      return;
+    console.log(selector);
+    if ((selector as any) instanceof Array) {
+      if (!(selector as any).length) {
+        message.error('Add at least one unit type');
+        return;
+      }
+    } else {
+      const isValid: boolean = Object.values(
+        selector,
+      ).every((v: any): boolean => !!v.length);
+      if (!isValid) {
+        message.error(
+          'Check all form fields in the current step',
+        );
+        return;
+      }
     }
 
     setCurrent(current + 1);

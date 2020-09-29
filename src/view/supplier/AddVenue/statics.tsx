@@ -1,9 +1,11 @@
 import React from 'react';
-import General from './components/General/General';
-import HotelChain from './components/HotelChain/HotelChain';
-import Address from './components/Address/Address';
-import Details from './components/Details/Details';
-import Units from './components/Units/Units';
+import General from './pages/General/General';
+import HotelChain from './pages/HotelChain/HotelChain';
+import Address from './pages/Address/Address';
+import Details from './pages/Details/Details';
+import Units from './pages/Units/Units';
+import Prices from './pages/Prices/Prices';
+import Hours from './pages/Hours/Hours';
 
 interface IStepDescription {
   title: string;
@@ -39,12 +41,12 @@ export const stepsList: IStepDescription[] = [
   },
   {
     title: 'Prices',
-    content: 'Sixth-content',
+    content: <Prices />,
     key: 'prices',
   },
   {
     title: 'Operational Hours',
-    content: 'Seventh-content',
+    content: <Hours />,
     key: 'hours',
   },
 ];

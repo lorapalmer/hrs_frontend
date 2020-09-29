@@ -6,7 +6,7 @@ import {
   SET_UNITS,
 } from './actions';
 import rootReducer from '../rootReducer';
-import {IUnit} from '../../view/supplier/AddVenuePage/components/Units/Units.types';
+import {IUnit} from '../../view/supplier/AddVenue/pages/Units/Units.types';
 
 interface ICreateSupplierRequestAction {
   type: typeof CREATE_SUPPLIER_REQUEST;

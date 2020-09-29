@@ -7,7 +7,7 @@ import {
 import Login from '../../auth/Login/Login';
 import Register from '../../auth/Register/Register';
 import Layout from '../Layout/Layout';
-import AddVenuePage from '../../supplier/AddVenuePage';
+import AddVenuePage from '../../supplier/AddVenue';
 
 // ROUTES FOR WHOLE APP
 const App: FC = () => {

@@ -7,12 +7,13 @@ import {
 } from './actions';
 import {
   CreateSupplierActionTypes,
-  ISupplierState,
+  // ISupplierState,
 } from './types';
 
 // SUPPLIER STATE
 const initialState = {
   loading: false,
+  touched: false,
   general: {
     name: 'bob',
     hkey: '213',
@@ -32,15 +33,18 @@ const initialState = {
     floorNumber: '14',
   },
   details: {
-    email: '',
-    fax: '',
-    phone: '',
-    websiteURL: '',
-    facebookURL: '',
-    instagramURL: '',
-    twitterURL: '',
+    email: 'newme1989.5@gmail.com',
+    fax: '2323',
+    phone: '0936757386',
+    websiteURL: 'https://www.apple.com',
+    facebookURL:
+      'https://www.facebook.com/TelychkoVitaliiS/',
+    instagramURL: 'https://www.instagram.com',
+    twitterURL: 'https://www.twitter.com',
   },
   units: [],
+  prices: {},
+  hours: {},
   supplier: null,
   error: null,
 };
