@@ -3,6 +3,7 @@ import {
   CREATE_SUPPLIER_SUCCESS,
   CREATE_SUPPLIER_FAILURE,
   HANDLE_SUPPLIER_FIELDS,
+  SET_UNITS,
 } from './actions';
 import {
   CreateSupplierActionTypes,
@@ -48,7 +49,38 @@ const initialState = {
 export default function (
   state = initialState,
   action: CreateSupplierActionTypes,
-): ISupplierState {
+): {
+  [p: string]: any;
+  general: {
+    amenities: number[];
+    hkey: string;
+    name: string;
+    description: string;
+    services: number[];
+  };
+  hotelChain: {name: string};
+  address: {
+    country: string;
+    streetName: string;
+    city: string;
+    postalCode: string;
+    floorNumber: string;
+    buildingNumber: string;
+  };
+  supplier: null;
+  details: {
+    facebookURL: string;
+    phone: string;
+    websiteURL: string;
+    twitterURL: string;
+    instagramURL: string;
+    fax: string;
+    email: string;
+  };
+  units: any[];
+  loading: boolean;
+  error: null;
+} {
   switch (action.type) {
     case HANDLE_SUPPLIER_FIELDS:
       return {
@@ -57,6 +89,11 @@ export default function (
           ...(state as any)[action.key],
           [action.name]: action.value,
         },
+      };
+    case SET_UNITS:
+      return {
+        ...state,
+        units: [...action.payload],
       };
     case CREATE_SUPPLIER_REQUEST:
       return {

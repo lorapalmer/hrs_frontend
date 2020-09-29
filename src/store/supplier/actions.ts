@@ -1,4 +1,5 @@
 import {CreateSupplierActionTypes} from './types';
+import {IUnit} from '../../view/supplier/AddVenuePage/components/Units/Units.types';
 
 export const CREATE_SUPPLIER_REQUEST =
   'CREATE_SUPPLIER_REQUEST';
@@ -8,6 +9,7 @@ export const CREATE_SUPPLIER_FAILURE =
   'CREATE_SUPPLIER_FAILURE';
 export const HANDLE_SUPPLIER_FIELDS =
   'HANDLE_SUPPLIER_FIELDS';
+export const SET_UNITS = 'SET_UNITS';
 
 // CREATE SUPPLIER ACTION CREATORS
 const createSupplierRequest = (): CreateSupplierActionTypes => ({
@@ -37,6 +39,11 @@ export const handleSupplierFields = (
   key,
   name,
   value,
+});
+
+export const setUnits = (payload: IUnit[]) => ({
+  type: SET_UNITS,
+  payload,
 });
 
 // CREATE SUPPLIER FACADE ACTION TO EXECUTE AJAX REQUEST

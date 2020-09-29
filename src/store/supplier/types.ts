@@ -3,8 +3,10 @@ import {
   CREATE_SUPPLIER_SUCCESS,
   CREATE_SUPPLIER_FAILURE,
   HANDLE_SUPPLIER_FIELDS,
+  SET_UNITS,
 } from './actions';
 import rootReducer from '../rootReducer';
+import {IUnit} from '../../view/supplier/AddVenuePage/components/Units/Units.types';
 
 interface ICreateSupplierRequestAction {
   type: typeof CREATE_SUPPLIER_REQUEST;
@@ -27,11 +29,17 @@ interface IHandleSupplierFieldsAction {
   value: string | number[];
 }
 
+interface ISetUnits {
+  type: typeof SET_UNITS;
+  payload: IUnit[];
+}
+
 export type CreateSupplierActionTypes =
   | ICreateSupplierRequestAction
   | ICreateSupplierSuccessAction
   | ICreateSupplierFailureAction
-  | IHandleSupplierFieldsAction;
+  | IHandleSupplierFieldsAction
+  | ISetUnits;
 
 export interface ISupplierGeneralState {
   name: string;
@@ -41,9 +49,40 @@ export interface ISupplierGeneralState {
   description: string;
 }
 
+export interface ISupplierHotelChainState {
+  name: string;
+}
+
+export interface ISupplierDetailsState {
+  email: string;
+  fax: string;
+  phone: string;
+  websiteURL: string;
+  facebookURL: string;
+  instagramURL: string;
+  twitterURL: string;
+}
+
+export interface ISupplierAddressState {
+  streetName: string;
+  buildingNumber: number | null;
+  city: string;
+  country: string;
+  postalCode: number | null;
+  floorNumber: number | null;
+}
+
+export interface ISupplierUnitsState {
+  units: IUnit[];
+}
+
 export interface ISupplierState {
   loading: boolean;
   general: ISupplierGeneralState;
+  hotelChain: ISupplierHotelChainState;
+  details: ISupplierDetailsState;
+  address: ISupplierAddressState;
+  units: ISupplierUnitsState;
   supplier: null | string;
   error: null | string;
 }

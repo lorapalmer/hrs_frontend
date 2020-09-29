@@ -1,0 +1,16 @@
+.form {
+  width: 30%;
+}
+
+.label {
+  margin-right: 8px;
+}
+
+.unitPlus {
+  background: #fff;
+  border-style: dashed;
+}
+
+.item {
+  width: 100%;
+}

@@ -1,5 +1,6 @@
 export interface IUnit {
   venueId: number;
+  name: string;
   unitTypeId: number;
   quantity: number;
   cost: number;

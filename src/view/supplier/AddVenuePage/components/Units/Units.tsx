@@ -1,121 +1,154 @@
-import React, {FC, ChangeEvent} from 'react';
-import {Form, Input, Select, Button} from 'antd';
-import {
-  MinusCircleOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
+import React, {
+  FC,
+  ChangeEvent,
+  useState,
+  useRef,
+} from 'react';
+import {Tag, Input, Tooltip} from 'antd';
+import {PlusOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
-import {handleSupplierFields} from '../../../../../store/supplier/actions';
+import {setUnits} from '../../../../../store/supplier/actions';
 import {IUnit} from './Units.types';
 import {RootState} from '../../../../../store/supplier/types';
-import validateMessages from '../../../../common/validation';
-import venue from './General.module.css';
-
-const {Option} = Select,
-  layout = {
-    labelCol: {span: 6},
-    wrapperCol: {span: 16},
-  };
-
-const formItemLayout = {
-  labelCol: {
-    xs: {span: 24},
-    sm: {span: 4},
-  },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 20},
-  },
-};
-const formItemLayoutWithOutLabel = {
-  wrapperCol: {
-    xs: {span: 24, offset: 0},
-    sm: {span: 20, offset: 4},
-  },
-};
+import unitsStyles from './Units.module.css';
 
 const Units: FC = () => {
+  const [inputVisible, setInputVisible] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [editInputIndex, setEditInputIndex] = useState(-1);
+  const [editInputValue, setEditInputValue] = useState('');
   const dispatch = useDispatch();
-  const {units}: {units: IUnit[]} = useSelector(
+  let input = useRef<any>(null);
+  let editInput = useRef<any>(null);
+  const {units}: {units: any} = useSelector(
     (state: RootState) => state.supplierReducer,
   );
-  const [form] = Form.useForm();
 
-  const handleFormFields = (
-    event: ChangeEvent<HTMLInputElement>,
-  ): void => {
-    dispatch(
-      handleSupplierFields(
-        'units',
-        event.target.name,
-        event.target.value,
-      ),
+  const handleClose = (removedTag: any) => {
+    const _units = units.filter(
+      (unit: any) => unit.name !== removedTag,
     );
+    dispatch(setUnits(_units));
+  };
+
+  const showInput = () => {
+    setInputVisible(true);
+    input.current?.focus();
+  };
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputConfirm = () => {
+    let _units;
+    if (inputValue) {
+      _units = [
+        ...units,
+        {
+          unitTypeId: Math.random(),
+          name: inputValue,
+          quantity: 1,
+        },
+      ];
+      dispatch(setUnits(_units));
+    }
+    setInputVisible(false);
+    setInputValue('');
+  };
+
+  const handleEditInputChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    setEditInputValue(event.target.value);
+  };
+
+  const handleEditInputConfirm = () => {
+    const newUnits = [...units];
+    newUnits[editInputIndex].name = editInputValue;
+    setEditInputValue('');
+    setEditInputIndex(-1);
+    dispatch(setUnits(newUnits));
   };
 
   return (
-    <Form
-      name='dynamic_form_item'
-      {...formItemLayoutWithOutLabel}
-    >
-      <Form.List name='names'>
-        {(fields, {add, remove}) => {
-          return (
-            <div>
-              {fields.map((field, index) => (
-                <Form.Item
-                  {...(index === 0
-                    ? formItemLayout
-                    : formItemLayoutWithOutLabel)}
-                  label={index === 0 ? 'Passengers' : ''}
-                  required={false}
-                  key={field.key}
-                >
-                  <Form.Item
-                    {...field}
-                    validateTrigger={['onChange', 'onBlur']}
-                    rules={[
-                      {
-                        required: true,
-                        whitespace: true,
-                        message:
-                          "Please input passenger's name or delete this field.",
-                      },
-                    ]}
-                    noStyle
-                  >
-                    <Input
-                      placeholder='passenger name'
-                      style={{width: '60%'}}
-                    />
-                  </Form.Item>
-                  {fields.length > 1 ? (
-                    <MinusCircleOutlined
-                      className='dynamic-delete-button'
-                      style={{margin: '0 8px'}}
-                      onClick={() => {
-                        remove(field.name);
-                      }}
-                    />
-                  ) : null}
-                </Form.Item>
-              ))}
-              <Form.Item>
-                <Button
-                  type='dashed'
-                  onClick={() => {
-                    add();
-                  }}
-                  style={{width: '60%'}}
-                >
-                  <PlusOutlined /> Add Unit
-                </Button>
-              </Form.Item>
-            </div>
+    <section className={unitsStyles.form}>
+      <span className={unitsStyles.label}>Units:</span>
+      {(units as IUnit[]).map(
+        (unit: IUnit, index: number) => {
+          if (editInputIndex === index) {
+            return (
+              <Input
+                ref={input}
+                key={unit.unitTypeId}
+                size='small'
+                className='tag-input'
+                value={editInputValue}
+                onChange={handleEditInputChange}
+                onBlur={handleEditInputConfirm}
+                onPressEnter={handleEditInputConfirm}
+              />
+            );
+          }
+
+          const isLongTag = units.length > 20;
+
+          const tagElem = (
+            <Tag
+              className='edit-tag'
+              key={unit.unitTypeId}
+              closable={true}
+              onClose={() => handleClose(unit.name)}
+            >
+              <span
+                onDoubleClick={(event) => {
+                  setEditInputIndex(index);
+                  setEditInputValue(unit.name);
+                  editInput.current?.focus();
+                  event.preventDefault();
+                }}
+              >
+                {isLongTag
+                  ? `${unit.name.slice(0, 20)}...`
+                  : unit.name}
+              </span>
+            </Tag>
           );
-        }}
-      </Form.List>
-    </Form>
+          return isLongTag ? (
+            <Tooltip
+              title={unit.name}
+              key={unit.unitTypeId}
+            >
+              {tagElem}
+            </Tooltip>
+          ) : (
+            tagElem
+          );
+        },
+      )}
+      {inputVisible && (
+        <Input
+          ref={editInput}
+          type='text'
+          size='small'
+          className='tag-input'
+          value={inputValue}
+          onChange={handleInputChange}
+          onBlur={handleInputConfirm}
+          onPressEnter={handleInputConfirm}
+        />
+      )}
+      {!inputVisible && (
+        <Tag
+          className={unitsStyles.unitPlus}
+          onClick={showInput}
+        >
+          <PlusOutlined /> Add Unit
+        </Tag>
+      )}
+    </section>
   );
 };
 

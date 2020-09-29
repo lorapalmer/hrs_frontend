@@ -8,7 +8,7 @@ import {Form, Input, Select, Divider, Button} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {handleSupplierFields} from '../../../../../store/supplier/actions';
-import venue from '../Units/General.module.css';
+import venue from '../Units/Units.module.css';
 import {
   ISupplierGeneralState,
   RootState,

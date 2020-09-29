@@ -2,19 +2,19 @@ import React, {FC, ChangeEvent} from 'react';
 import {Form, Input} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {handleSupplierFields} from '../../../../../store/supplier/actions';
-import {IDetails} from './Details.types';
+import {IAddress} from './Address.types';
 import {RootState} from '../../../../../store/supplier/types';
 import validateMessages from '../../../../common/validation';
-import venue from './Details.module.css';
+import venue from './Address.module.css';
 
 const layout = {
   labelCol: {span: 6},
   wrapperCol: {span: 16},
 };
 
-const Details: FC = () => {
+const Address: FC = () => {
   const dispatch = useDispatch();
-  const {details}: {details: IDetails} = useSelector(
+  const {address}: {address: IAddress} = useSelector(
     (state: RootState) => state.supplierReducer,
   );
   const [form] = Form.useForm();
@@ -24,7 +24,7 @@ const Details: FC = () => {
   ): void => {
     dispatch(
       handleSupplierFields(
-        'details',
+        'address',
         event.target.name,
         event.target.value,
       ),
@@ -38,105 +38,89 @@ const Details: FC = () => {
       className={venue.form}
       validateMessages={validateMessages}
       initialValues={{
-        email: details.email,
-        phone: details.phone,
-        fax: details.fax,
-        websiteURL: details.websiteURL,
-        facebookURL: details.facebookURL,
-        instagramURL: details.instagramURL,
-        twitterURL: details.twitterURL,
+        country: address.country,
+        city: address.city,
+        streetName: address.streetName,
+        buildingNumber: address.buildingNumber,
+        floorNumber: address.floorNumber,
+        postalCode: address.postalCode,
       }}
     >
       <Form.Item
-        name='email'
-        label='Email'
-        className={venue.item}
-        rules={[{required: true}, {type: 'email'}]}
-      >
-        <Input
-          allowClear
-          name='email'
-          placeholder='Enter email'
-          onChange={handleFormFields}
-        />
-      </Form.Item>
-      <Form.Item
-        name='phone'
-        label='Phone'
+        name='country'
+        label='Country'
         className={venue.item}
         rules={[{required: true}]}
       >
         <Input
-          type='number'
-          name='phone'
           allowClear
-          placeholder='Enter phone number'
+          name='country'
+          placeholder='Enter country'
           onChange={handleFormFields}
         />
       </Form.Item>
       <Form.Item
-        name='fax'
-        label='Fax'
+        name='city'
+        label='City'
         className={venue.item}
-        rules={[]}
+        rules={[{required: true}]}
+      >
+        <Input
+          name='city'
+          allowClear
+          placeholder='Enter city'
+          onChange={handleFormFields}
+        />
+      </Form.Item>
+      <Form.Item
+        name='streetName'
+        label='Street'
+        className={venue.item}
+        rules={[{required: true}]}
+      >
+        <Input
+          name='streetName'
+          allowClear
+          placeholder='Enter street name'
+          onChange={handleFormFields}
+        />
+      </Form.Item>
+      <Form.Item
+        name='buildingNumber'
+        label='Building Number'
+        className={venue.item}
+        rules={[{required: true}]}
+      >
+        <Input
+          name='buildingNumber'
+          allowClear
+          placeholder='Enter building number'
+          onChange={handleFormFields}
+        />
+      </Form.Item>
+      <Form.Item
+        name='postalCode'
+        label='Postal Code'
+        className={venue.item}
+        rules={[{required: true}]}
+      >
+        <Input
+          name='postalCode'
+          allowClear
+          placeholder='Enter postal code'
+          onChange={handleFormFields}
+        />
+      </Form.Item>
+      <Form.Item
+        name='floorNumber'
+        label='Floor Number'
+        className={venue.item}
       >
         <Input
           type='number'
-          name='fax'
+          name='floorNumber'
           allowClear
-          placeholder='Enter fax number'
-          onChange={handleFormFields}
-        />
-      </Form.Item>
-      <Form.Item
-        name='websiteURL'
-        label='Website'
-        className={venue.item}
-        rules={[{type: 'url'}]}
-      >
-        <Input
-          name='websiteURL'
-          allowClear
-          placeholder='Enter Website URL'
-          onChange={handleFormFields}
-        />
-      </Form.Item>
-      <Form.Item
-        name='facebookURL'
-        label='Facebook'
-        className={venue.item}
-        rules={[{type: 'url'}]}
-      >
-        <Input
-          name='facebookURL'
-          allowClear
-          placeholder='Enter Facebook URL'
-          onChange={handleFormFields}
-        />
-      </Form.Item>
-      <Form.Item
-        name='instagramURL'
-        label='Instagram'
-        className={venue.item}
-        rules={[{type: 'url'}]}
-      >
-        <Input
-          name='instagramURL'
-          allowClear
-          placeholder='Enter Instagram URL'
-          onChange={handleFormFields}
-        />
-      </Form.Item>
-      <Form.Item
-        name='twitterURL'
-        label='Twitter'
-        className={venue.item}
-        rules={[{type: 'url'}]}
-      >
-        <Input
-          name='twitterURL'
-          allowClear
-          placeholder='Enter Twitter URL'
+          placeholder='Enter floor number'
           onChange={handleFormFields}
         />
       </Form.Item>
@@ -144,4 +128,4 @@ const Details: FC = () => {
   );
 };
 
-export default Details;
+export default Address;
