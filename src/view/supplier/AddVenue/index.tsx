@@ -15,6 +15,7 @@ const {Step} = Steps;
 
 const AddVenuePage: FC = () => {
   const [current, setCurrent] = useState<number>(0);
+  const history = useHistory();
   const selector:
     | IGeneral
     | IChain
@@ -24,6 +25,10 @@ const AddVenuePage: FC = () => {
     | IUnit = useSelector(
     (state: RootState) =>
       state.supplierReducer[stepsList[current].key],
+  );
+
+  const supplier: any = useSelector(
+    (state: RootState) => state.supplierReducer,
   );
 
   const next = (): void => {
@@ -63,8 +68,29 @@ const AddVenuePage: FC = () => {
     setCurrent(current + 1);
   };
   const prev = (): void => setCurrent(current - 1);
-  const addVenue = (): void => {
-    console.log(selector, stepsList[current].key);
+  const addVenue = async () => {
+    let data: any = {};
+    data = supplier.general;
+    data.units = supplier.units;
+    data.location = supplier.address;
+    data.chain = supplier.hotelChain;
+    data.contacts = [supplier.details];
+
+    const response = await fetch(
+      'http://localhost:3001/venue',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+    );
+
+    if (response.ok) {
+      await response.json();
+      history.push('/venues');
+    }
   };
 
   return (

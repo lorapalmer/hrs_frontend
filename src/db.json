@@ -52,8 +52,45 @@
   "venue": {
     "name": "interdan_test",
     "hkey": "zc",
-    "amenitiesIds": [1],
-    "servicesIds": [2],
-    "description": "LLLLLLL"
+    "amenities": [1],
+    "services": [1],
+    "description": "WHEN I enter Supplier Extranet\nAND I have existing Venues\nTHEN I should access Venue details\n\nScenario: Supplier should see venue details\nGIVEN as a logged in Supplier\nWHEN I successfully add new venue\nTHEN I should be presented view venue details page including:\n\nHotel Chain\nVenue Name\nVenue Description\nVenue Contact Details\nEmail\nPhone number\nFax\nChain/Main Brand\nWebsite URL\nFacebook URL\nIntergram URL\nTwitter URL\nVenue Location\nStreet Address\nCity\nCountry\nZip / Postal Code\nUnit / Floor number\n",
+    "units": [
+      {
+        "name": "Open Space",
+        "quantity": "123",
+        "cost": "12",
+        "pricingTypeUnit": "ONE_DAY"
+      },
+      {
+        "name": "Office",
+        "quantity": "678",
+        "cost": "23",
+        "pricingTypeUnit": "ONE_MONTH"
+      }
+    ],
+    "location": {
+      "streetName": "Lindsey Street, Barbican",
+      "buildingNumber": "45",
+      "city": "Kyiv",
+      "country": "Ukraine",
+      "postalCode": "232323",
+      "floorNumber": "34"
+    },
+    "chain": {
+      "name": "Radisson"
+    },
+    "contacts": [
+      {
+        "email": "newme1989.5@gmail.com",
+        "fax": "2323",
+        "phone": "0936757386",
+        "websiteURL": "https://www.apple.com",
+        "facebookURL": "https://www.facebook.com/TelychkoVitaliiS/",
+        "instagramURL": "https://www.instagram.com",
+        "twitterURL": "https://www.twitter.com",
+        "type": "details"
+      }
+    ]
   }
 }
