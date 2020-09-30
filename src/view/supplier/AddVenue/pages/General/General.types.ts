@@ -8,5 +8,10 @@ export interface IService {
   name: string;
 }
 
-export type AmenitiesType = IAmenity[] | null;
-export type ServicesType = IService[] | null;
+export interface IGeneral {
+  name: string;
+  hkey: string;
+  amenities: IAmenity[];
+  services: IService[];
+  description: string;
+}

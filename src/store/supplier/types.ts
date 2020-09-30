@@ -4,6 +4,7 @@ import {
   CREATE_SUPPLIER_FAILURE,
   HANDLE_SUPPLIER_FIELDS,
   SET_UNITS,
+  SET_DAYS,
 } from './actions';
 import rootReducer from '../rootReducer';
 import {IUnit} from '../../view/supplier/AddVenue/pages/Units/Units.types';
@@ -34,57 +35,17 @@ interface ISetUnits {
   payload: IUnit[];
 }
 
+interface ISetDays {
+  type: typeof SET_DAYS;
+  payload: {name: string; status: boolean}[];
+}
+
 export type CreateSupplierActionTypes =
   | ICreateSupplierRequestAction
   | ICreateSupplierSuccessAction
   | ICreateSupplierFailureAction
   | IHandleSupplierFieldsAction
-  | ISetUnits;
-
-export interface ISupplierGeneralState {
-  name: string;
-  hkey: string;
-  amenities: number[];
-  services: number[];
-  description: string;
-}
-
-export interface ISupplierHotelChainState {
-  name: string;
-}
-
-export interface ISupplierDetailsState {
-  email: string;
-  fax: string;
-  phone: string;
-  websiteURL: string;
-  facebookURL: string;
-  instagramURL: string;
-  twitterURL: string;
-}
-
-export interface ISupplierAddressState {
-  streetName: string;
-  buildingNumber: number | null;
-  city: string;
-  country: string;
-  postalCode: number | null;
-  floorNumber: number | null;
-}
-
-export interface ISupplierUnitsState {
-  units: IUnit[];
-}
-
-export interface ISupplierState {
-  loading: boolean;
-  general: ISupplierGeneralState;
-  hotelChain: ISupplierHotelChainState;
-  details: ISupplierDetailsState;
-  address: ISupplierAddressState;
-  units: ISupplierUnitsState;
-  supplier: null | string;
-  error: null | string;
-}
+  | ISetUnits
+  | ISetDays;
 
 export type RootState = ReturnType<typeof rootReducer>;

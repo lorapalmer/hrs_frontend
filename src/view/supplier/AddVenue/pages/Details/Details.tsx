@@ -5,7 +5,7 @@ import {handleSupplierFields} from '../../../../../store/supplier/actions';
 import {IDetails} from './Details.types';
 import {RootState} from '../../../../../store/supplier/types';
 import validateMessages from '../../../../common/validation';
-import venue from './Details.module.css';
+import detailsStyles from '../../index.module.css';
 
 const layout = {
   labelCol: {span: 6},
@@ -35,7 +35,7 @@ const Details: FC = () => {
     <Form
       {...layout}
       form={form}
-      className={venue.form}
+      className={detailsStyles.form}
       validateMessages={validateMessages}
       initialValues={{
         email: details.email,
@@ -50,7 +50,7 @@ const Details: FC = () => {
       <Form.Item
         name='email'
         label='Email'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{required: true}, {type: 'email'}]}
       >
         <Input
@@ -63,7 +63,7 @@ const Details: FC = () => {
       <Form.Item
         name='phone'
         label='Phone'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -77,7 +77,7 @@ const Details: FC = () => {
       <Form.Item
         name='fax'
         label='Fax'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[]}
       >
         <Input
@@ -91,7 +91,7 @@ const Details: FC = () => {
       <Form.Item
         name='websiteURL'
         label='Website'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{type: 'url'}]}
       >
         <Input
@@ -104,7 +104,7 @@ const Details: FC = () => {
       <Form.Item
         name='facebookURL'
         label='Facebook'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{type: 'url'}]}
       >
         <Input
@@ -117,7 +117,7 @@ const Details: FC = () => {
       <Form.Item
         name='instagramURL'
         label='Instagram'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{type: 'url'}]}
       >
         <Input
@@ -130,7 +130,7 @@ const Details: FC = () => {
       <Form.Item
         name='twitterURL'
         label='Twitter'
-        className={venue.item}
+        className={detailsStyles.item}
         rules={[{type: 'url'}]}
       >
         <Input

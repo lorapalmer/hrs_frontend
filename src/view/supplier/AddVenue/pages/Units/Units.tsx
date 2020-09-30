@@ -26,20 +26,26 @@ import unitsStyles from './Units.module.css';
 const {Text} = Typography;
 
 const Units: FC = () => {
-  const [inputVisible, setInputVisible] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [editInputIndex, setEditInputIndex] = useState(-1);
-  const [editInputValue, setEditInputValue] = useState('');
+  const [inputVisible, setInputVisible] = useState<boolean>(
+    false,
+  );
+  const [inputValue, setInputValue] = useState<string>('');
+  const [editInputIndex, setEditInputIndex] = useState<
+    number
+  >(-1);
+  const [editInputValue, setEditInputValue] = useState<
+    string
+  >('');
   const dispatch = useDispatch();
   let input = useRef<any>(null);
   let editInput = useRef<any>(null);
-  const {units}: {units: any} = useSelector(
+  const {units}: {units: IUnit[]} = useSelector(
     (state: RootState) => state.supplierReducer,
   );
 
   useEffect(() => {
     if (!units.length) {
-      const _units = [
+      const _units: IUnit[] = [
         {
           name: 'Open Space',
           quantity: '1',
@@ -55,11 +61,12 @@ const Units: FC = () => {
       ];
       dispatch(setUnits(_units));
     }
-  }, [dispatch, units.length]);
+    // eslint-disable-next-line
+  }, []);
 
   const handleClose = (removedTag: string): void => {
-    const _units = units.filter(
-      (unit: any) => unit.name !== removedTag,
+    const _units: IUnit[] = units.filter(
+      (unit: IUnit) => unit.name !== removedTag,
     );
     dispatch(setUnits(_units));
   };
@@ -76,14 +83,21 @@ const Units: FC = () => {
   };
 
   const handleInputConfirm = (): void => {
-    const isExist = units.find(
+    const isExist: IUnit | undefined = units.find(
       (unit: IUnit) => unit.name === inputValue,
     );
     if (isExist) {
       message.error('This Unit Type already exist!');
     } else if (inputValue) {
-      let _units;
-      _units = [
+      let _units: (
+        | IUnit
+        | {
+            quantity: number;
+            cost: string;
+            pricingTypeUnit: string;
+            name: string;
+          }
+      )[] = [
         ...units,
         {
           name: inputValue,
@@ -105,7 +119,7 @@ const Units: FC = () => {
   };
 
   const handleEditInputConfirm = (): void => {
-    const newUnits = [...units];
+    const newUnits: IUnit[] = [...units];
     newUnits[editInputIndex].name = editInputValue;
     setEditInputValue('');
     setEditInputIndex(-1);
@@ -114,8 +128,8 @@ const Units: FC = () => {
 
   const handleCapacityField = (
     event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const _units = units.map((unit: IUnit) => {
+  ): void => {
+    const _units: IUnit[] = units.map((unit: IUnit) => {
       if (unit.name === event.target.name) {
         unit.quantity = event.target.value;
       }

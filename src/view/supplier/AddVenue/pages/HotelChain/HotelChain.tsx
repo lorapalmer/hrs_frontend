@@ -8,12 +8,10 @@ import {Form, Input, Select, Divider, Button} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {handleSupplierFields} from '../../../../../store/supplier/actions';
-import venue from './HotelChain.module.css';
-import {
-  ISupplierGeneralState,
-  RootState,
-} from '../../../../../store/supplier/types';
+import {RootState} from '../../../../../store/supplier/types';
 import {IChain, ChainType} from './HotelChain.types';
+import validateMessages from '../../../../common/validation';
+import hcStyles from '../../index.module.css';
 
 const layout = {
     labelCol: {span: 6},
@@ -26,19 +24,17 @@ const HotelChain: FC = () => {
   const [name, setName] = useState<string>('');
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const {
-    hotelChain,
-  }: {hotelChain: ISupplierGeneralState} = useSelector(
+  const {hotelChain}: {hotelChain: IChain} = useSelector(
     (state: RootState) => state.supplierReducer,
   );
 
-  useEffect(() => {
+  useEffect((): void => {
     fetch('http://localhost:3001/chains')
       .then((response) => response.json())
       .then((data) => setChains(data));
   }, []);
 
-  const handleFormFields = (value: string = '') => {
+  const handleFormFields = (value: string = ''): void => {
     dispatch(
       handleSupplierFields('hotelChain', 'name', value),
     );
@@ -46,7 +42,7 @@ const HotelChain: FC = () => {
 
   const onNewHCNameChange = (
     event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  ): void => {
     if (event.type === 'click') {
       setName('');
       return;
@@ -54,7 +50,7 @@ const HotelChain: FC = () => {
     setName(event.target.value);
   };
 
-  const addHotelChain = () => {
+  const addHotelChain = (): void => {
     if (!name) return;
     let _id: number = chains.length;
     _id += 1;
@@ -67,7 +63,8 @@ const HotelChain: FC = () => {
     <Form
       {...layout}
       form={form}
-      className={venue.form}
+      className={hcStyles.form}
+      validateMessages={validateMessages}
       initialValues={{
         name: hotelChain.name,
       }}
@@ -75,7 +72,7 @@ const HotelChain: FC = () => {
       <Form.Item
         name='name'
         label='Hotel Chain'
-        className={venue.item}
+        className={hcStyles.item}
         rules={[{required: true}]}
       >
         <Select

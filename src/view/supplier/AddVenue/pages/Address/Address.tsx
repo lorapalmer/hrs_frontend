@@ -5,7 +5,7 @@ import {handleSupplierFields} from '../../../../../store/supplier/actions';
 import {IAddress} from './Address.types';
 import {RootState} from '../../../../../store/supplier/types';
 import validateMessages from '../../../../common/validation';
-import venue from './Address.module.css';
+import addressStyles from '../../index.module.css';
 
 const layout = {
   labelCol: {span: 6},
@@ -35,7 +35,7 @@ const Address: FC = () => {
     <Form
       {...layout}
       form={form}
-      className={venue.form}
+      className={addressStyles.form}
       validateMessages={validateMessages}
       initialValues={{
         country: address.country,
@@ -49,7 +49,7 @@ const Address: FC = () => {
       <Form.Item
         name='country'
         label='Country'
-        className={venue.item}
+        className={addressStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -62,7 +62,7 @@ const Address: FC = () => {
       <Form.Item
         name='city'
         label='City'
-        className={venue.item}
+        className={addressStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -75,7 +75,7 @@ const Address: FC = () => {
       <Form.Item
         name='streetName'
         label='Street'
-        className={venue.item}
+        className={addressStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -88,7 +88,7 @@ const Address: FC = () => {
       <Form.Item
         name='buildingNumber'
         label='Building Number'
-        className={venue.item}
+        className={addressStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -101,7 +101,7 @@ const Address: FC = () => {
       <Form.Item
         name='postalCode'
         label='Postal Code'
-        className={venue.item}
+        className={addressStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -114,7 +114,8 @@ const Address: FC = () => {
       <Form.Item
         name='floorNumber'
         label='Floor Number'
-        className={venue.item}
+        className={addressStyles.item}
+        rules={[{required: true}]}
       >
         <Input
           type='number'

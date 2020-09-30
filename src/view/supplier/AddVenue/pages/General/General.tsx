@@ -8,17 +8,13 @@ import {Form, Input, Select} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {handleSupplierFields} from '../../../../../store/supplier/actions';
 import {
-  AmenitiesType,
   IAmenity,
-  ServicesType,
+  IGeneral,
   IService,
 } from './General.types';
-import {
-  ISupplierGeneralState,
-  RootState,
-} from '../../../../../store/supplier/types';
+import {RootState} from '../../../../../store/supplier/types';
 import validateMessages from '../../../../common/validation';
-import venue from './General.module.css';
+import generalStyles from '../../index.module.css';
 
 const {Option} = Select,
   layout = {
@@ -27,16 +23,12 @@ const {Option} = Select,
   };
 
 const General: FC = () => {
-  const [amenities, setAmenities] = useState<AmenitiesType>(
-    null,
+  const [amenities, setAmenities] = useState<IAmenity[]>(
+    [],
   );
-  const [services, setServices] = useState<ServicesType>(
-    null,
-  );
+  const [services, setServices] = useState<IService[]>([]);
   const dispatch = useDispatch();
-  const {
-    general,
-  }: {general: ISupplierGeneralState} = useSelector(
+  const {general}: {general: IGeneral} = useSelector(
     (state: RootState) => state.supplierReducer,
   );
   const [form] = Form.useForm();
@@ -76,7 +68,7 @@ const General: FC = () => {
     <Form
       {...layout}
       form={form}
-      className={venue.form}
+      className={generalStyles.form}
       validateMessages={validateMessages}
       initialValues={{
         name: general.name,
@@ -89,7 +81,7 @@ const General: FC = () => {
       <Form.Item
         name='name'
         label='Name'
-        className={venue.item}
+        className={generalStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -102,7 +94,7 @@ const General: FC = () => {
       <Form.Item
         name='hkey'
         label='H-Key'
-        className={venue.item}
+        className={generalStyles.item}
         rules={[{required: true}]}
       >
         <Input
@@ -115,7 +107,7 @@ const General: FC = () => {
       <Form.Item
         name='amenitiesIds'
         label='Amenities'
-        className={venue.item}
+        className={generalStyles.item}
         rules={[{required: true}]}
       >
         <Select
@@ -126,7 +118,7 @@ const General: FC = () => {
             handleSelectFormFields('amenities', ids)
           }
         >
-          {amenities &&
+          {amenities.length &&
             (amenities as IAmenity[]).map(
               ({id, name}: IAmenity) => (
                 <Option key={id} value={id}>
@@ -139,7 +131,7 @@ const General: FC = () => {
       <Form.Item
         name='servicesIds'
         label='Services'
-        className={venue.item}
+        className={generalStyles.item}
         rules={[{required: true}]}
       >
         <Select
@@ -150,7 +142,7 @@ const General: FC = () => {
             handleSelectFormFields('services', ids)
           }
         >
-          {services &&
+          {services.length &&
             (services as IService[]).map(
               ({id, name}: IService) => (
                 <Option key={id} value={id}>
@@ -163,11 +155,11 @@ const General: FC = () => {
       <Form.Item
         name='description'
         label='Description'
-        className={venue.item}
+        className={generalStyles.item}
         rules={[
           {required: true},
           {
-            min: 3,
+            min: 150,
             message: 'Minimum number of symbols 150',
           },
           {
@@ -180,7 +172,7 @@ const General: FC = () => {
           allowClear
           name='description'
           maxLength={500}
-          minLength={3}
+          minLength={150}
           placeholder='Enter Description Name'
           onChange={handleFormFields}
         />

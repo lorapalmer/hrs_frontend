@@ -4,47 +4,57 @@ import {
   CREATE_SUPPLIER_FAILURE,
   HANDLE_SUPPLIER_FIELDS,
   SET_UNITS,
+  SET_DAYS,
 } from './actions';
-import {
-  CreateSupplierActionTypes,
-  // ISupplierState,
-} from './types';
+import {CreateSupplierActionTypes} from './types';
+import {IGeneral} from '../../view/supplier/AddVenue/pages/General/General.types';
+import {IChain} from '../../view/supplier/AddVenue/pages/HotelChain/HotelChain.types';
+import {IAddress} from '../../view/supplier/AddVenue/pages/Address/Address.types';
+import {IDetails} from '../../view/supplier/AddVenue/pages/Details/Details.types';
+import {IUnit} from '../../view/supplier/AddVenue/pages/Units/Units.types';
+import {IDay} from '../../view/supplier/AddVenue/pages/Hours/Hours.types';
 
 // SUPPLIER STATE
 const initialState = {
   loading: false,
-  touched: false,
   general: {
-    name: 'bob',
-    hkey: '213',
-    amenities: [3],
-    services: [2],
-    description: 'sfsdf',
+    name: '',
+    hkey: '',
+    amenities: [],
+    services: [],
+    description: '',
   },
   hotelChain: {
-    name: 'Marriott',
+    name: '',
   },
   address: {
-    streetName: 'Vasylkivska',
-    buildingNumber: '23',
-    city: 'Kyiv',
-    country: 'Ukraine',
-    postalCode: '12',
-    floorNumber: '14',
+    streetName: '',
+    buildingNumber: '',
+    city: '',
+    country: '',
+    postalCode: '',
+    floorNumber: '',
   },
   details: {
-    email: 'newme1989.5@gmail.com',
-    fax: '2323',
-    phone: '0936757386',
-    websiteURL: 'https://www.apple.com',
-    facebookURL:
-      'https://www.facebook.com/TelychkoVitaliiS/',
-    instagramURL: 'https://www.instagram.com',
-    twitterURL: 'https://www.twitter.com',
+    email: '',
+    fax: '',
+    phone: '',
+    websiteURL: '',
+    facebookURL: '',
+    instagramURL: '',
+    twitterURL: '',
+    type: 'details',
   },
   units: [],
-  prices: {},
-  hours: {},
+  days: [
+    {name: 'Monday', status: false},
+    {name: 'Tuesday', status: false},
+    {name: 'Wednesday', status: false},
+    {name: 'Thursday', status: false},
+    {name: 'Friday', status: false},
+    {name: 'Saturday', status: false},
+    {name: 'Sunday', status: false},
+  ],
   supplier: null,
   error: null,
 };
@@ -55,34 +65,14 @@ export default function (
   action: CreateSupplierActionTypes,
 ): {
   [p: string]: any;
-  general: {
-    amenities: number[];
-    hkey: string;
-    name: string;
-    description: string;
-    services: number[];
-  };
-  hotelChain: {name: string};
-  address: {
-    country: string;
-    streetName: string;
-    city: string;
-    postalCode: string;
-    floorNumber: string;
-    buildingNumber: string;
-  };
-  supplier: null;
-  details: {
-    facebookURL: string;
-    phone: string;
-    websiteURL: string;
-    twitterURL: string;
-    instagramURL: string;
-    fax: string;
-    email: string;
-  };
-  units: any[];
+  general: IGeneral;
+  hotelChain: IChain;
+  address: IAddress;
+  details: IDetails;
+  units: IUnit[];
+  days: IDay[];
   loading: boolean;
+  supplier: null;
   error: null;
 } {
   switch (action.type) {
@@ -98,6 +88,12 @@ export default function (
       return {
         ...state,
         units: [...action.payload],
+      };
+
+    case SET_DAYS:
+      return {
+        ...state,
+        days: [...action.payload],
       };
     case CREATE_SUPPLIER_REQUEST:
       return {

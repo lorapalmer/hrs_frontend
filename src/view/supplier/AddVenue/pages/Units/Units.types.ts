@@ -3,8 +3,6 @@ export interface IUnit {
   name: string;
   unitTypeId?: number;
   quantity: string;
-  cost?: string;
-  pricingTypeUnit?: string;
+  cost: string;
+  pricingTypeUnit: string;
 }
-
-export type UnitsType = IUnit[] | null;

@@ -10,6 +10,7 @@ export const CREATE_SUPPLIER_FAILURE =
 export const HANDLE_SUPPLIER_FIELDS =
   'HANDLE_SUPPLIER_FIELDS';
 export const SET_UNITS = 'SET_UNITS';
+export const SET_DAYS = 'SET_DAYS';
 
 // CREATE SUPPLIER ACTION CREATORS
 const createSupplierRequest = (): CreateSupplierActionTypes => ({
@@ -41,8 +42,25 @@ export const handleSupplierFields = (
   value,
 });
 
-export const setUnits = (payload: IUnit[]) => ({
+export const setUnits = (
+  payload: (
+    | IUnit
+    | {
+        quantity: number;
+        cost: string;
+        pricingTypeUnit: string;
+        name: string;
+      }
+  )[],
+) => ({
   type: SET_UNITS,
+  payload,
+});
+
+export const setDays = (
+  payload: {name: string; status: boolean}[],
+) => ({
+  type: SET_DAYS,
   payload,
 });
 

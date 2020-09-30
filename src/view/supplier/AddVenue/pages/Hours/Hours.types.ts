@@ -1,12 +1,6 @@
-export interface IUnit {
-  venueId: number;
+export interface IDay {
   name: string;
-  unitTypeId: number;
-  quantity: number;
-  cost: number;
-  pricingTypeUnit: number;
+  status: boolean;
+  from?: string;
+  to?: string;
 }
-
-// "ONE_HOUR", "ONE_DAY", "ONE_WEEK", "ONE_MONTH"
-
-export type UnitsType = IUnit[] | null;

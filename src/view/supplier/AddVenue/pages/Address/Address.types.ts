@@ -1,10 +1,8 @@
 export interface IAddress {
   streetName: string;
-  buildingNumber: number | null;
+  buildingNumber: string;
   city: string;
   country: string;
-  postalCode: number | null;
-  floorNumber: number | null;
+  postalCode: string;
+  floorNumber: string;
 }
-
-export type AddressType = IAddress[] | null;

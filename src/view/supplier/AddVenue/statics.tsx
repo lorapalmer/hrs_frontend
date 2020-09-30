@@ -42,11 +42,11 @@ export const stepsList: IStepDescription[] = [
   {
     title: 'Prices',
     content: <Prices />,
-    key: 'prices',
+    key: 'units',
   },
   {
     title: 'Operational Hours',
     content: <Hours />,
-    key: 'hours',
+    key: 'days',
   },
 ];
