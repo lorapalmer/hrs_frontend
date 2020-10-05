@@ -50,35 +50,35 @@
     }
   ],
   "venue": {
-    "name": "interdan_test",
-    "hkey": "zc",
-    "amenities": [1],
+    "name": "Test Venue Name",
+    "hkey": "1010101",
+    "amenities": [1, 2],
     "services": [1],
-    "description": "WHEN I enter Supplier Extranet\nAND I have existing Venues\nTHEN I should access Venue details\n\nScenario: Supplier should see venue details\nGIVEN as a logged in Supplier\nWHEN I successfully add new venue\nTHEN I should be presented view venue details page including:\n\nHotel Chain\nVenue Name\nVenue Description\nVenue Contact Details\nEmail\nPhone number\nFax\nChain/Main Brand\nWebsite URL\nFacebook URL\nIntergram URL\nTwitter URL\nVenue Location\nStreet Address\nCity\nCountry\nZip / Postal Code\nUnit / Floor number\n",
+    "description": "Scenario: Supplier should be able to assign location to Venue\nGIVEN: I am at Add Address form\nAND all mandatory* fields are entered:\n\nStreet Address*\nBuilding Number*\nCity*\nCountry*\nZip / Postal Code*\nUnit / Floor number\nWHEN I submit the Form\nTHEN location is assigned to Venue\n\nScenario: Supplier should be able to see if another Venue has been already registered under same address\nGIVEN: I am at Add Address form\nAND all mandatory* fields are entered\nWHEN I submit the Form\nAND there Venue has be",
     "units": [
       {
-        "name": "Open Space",
-        "quantity": "123",
-        "cost": "12",
-        "pricingTypeUnit": "ONE_DAY"
+        "name": "Office",
+        "quantity": "23",
+        "cost": "1000",
+        "pricingTypeUnit": "ONE_WEEK"
       },
       {
-        "name": "Office",
-        "quantity": "678",
-        "cost": "23",
-        "pricingTypeUnit": "ONE_MONTH"
+        "name": "Space",
+        "quantity": 1,
+        "cost": "132",
+        "pricingTypeUnit": "ONE_DAY"
       }
     ],
     "location": {
-      "streetName": "Lindsey Street, Barbican",
+      "streetName": "Strasse str",
       "buildingNumber": "45",
-      "city": "Kyiv",
-      "country": "Ukraine",
+      "city": "Berlin",
+      "country": "Germany",
       "postalCode": "232323",
-      "floorNumber": "34"
+      "floorNumber": "56"
     },
     "chain": {
-      "name": "Radisson"
+      "name": "Hilton"
     },
     "contacts": [
       {

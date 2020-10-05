@@ -198,7 +198,6 @@ const Units: FC = () => {
             type='text'
             size='small'
             autoFocus={true}
-            className='tag-input'
             value={inputValue}
             onChange={handleInputChange}
             onBlur={handleInputConfirm}
